@@ -99,6 +99,10 @@ func NewClient(cfg *ClientConfig) (*Client, error) {
 		IdleTimeout:     idleTimeout,
 		PoolWaitTimeout: poolWait,
 		SSL:             ssl,
+		TLSConfig: &tls.Config{
+			MinVersion: tls.VersionTLS12,
+			ServerName: cfg.Host,
+		},
 	})
 	if err != nil {
 		return nil, fmt.Errorf("create smtp pool: %w", err)
