@@ -14,6 +14,13 @@ configure an OTLP endpoint; Alloy/Beyla owns collection and trace export.
 
 Authentication-specific code belongs in [`aegis-go`](https://github.com/heliantheon/aegis-go). Hermes gRPC contracts live in [`hermes`](https://github.com/heliantheon/hermes) under `proto/v1`.
 
+## Mail transport
+
+The SMTP pool verifies the configured server hostname for STARTTLS and implicit
+TLS, with TLS 1.2 as the minimum version. Certificate verification remains
+enabled; SMTP startup verification and actual pooled delivery use the same
+server identity.
+
 ## Install
 
 ```bash
