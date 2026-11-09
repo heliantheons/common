@@ -15,14 +15,11 @@ services use this package for bounded business counters and histograms. Raw
 paths, request IDs, trace IDs, user IDs, email addresses, and URLs are rejected
 as labels.
 
-## Event bus
+## Event delivery
 
-Services connect directly to NATS through `eventbus.New`. `Publish` waits for a
-JetStream PubAck and encodes every SDK event as CloudEvents 1.0 structured JSON
-with `Content-Type: application/cloudevents+json`. Consumers ACK successful
-work, delay retries, and publish metadata-only dead letters after permanent or
-exhausted failures.
-
+CloudEvents are transported by the platform-managed Knative Broker. Services
+publish over HTTP and expose HTTP subscribers; broker durability, routing,
+retry, and dead-letter behavior are declared as Kubernetes resources.
 Business event schemas stay in their owning service. In particular, the Chaos
 mail delivery event lives under `chaos/internal/mail`, not in this module.
 

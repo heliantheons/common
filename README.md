@@ -6,8 +6,6 @@ The platform-facing packages are intentionally flat:
 
 - `log`: independent `log/slog` JSON loggers with trace/span correlation.
 - `metric`: independent Prometheus registries and safe custom metric helpers.
-- `eventbus`: strict CloudEvents 1.0 over NATS JetStream with PubAck,
-  durable consumers, retry, sanitized DLQ metadata, and graceful drain.
 
 Applications write logs to stdout and expose Prometheus metrics. They do not
 configure an OTLP endpoint; Alloy/Beyla owns collection and trace export.
@@ -43,7 +41,7 @@ make tidy
 
 The API query conventions implemented by `filter`, `pagination`, and `patch` are documented in [`docs/api-query-design.md`](docs/api-query-design.md).
 
-The logging, metrics, and event bus contracts are documented in [`docs/observability.md`](docs/observability.md).
+The logging, metrics, and tracing contracts are documented in [`docs/observability.md`](docs/observability.md).
 
 ## Package policy
 
