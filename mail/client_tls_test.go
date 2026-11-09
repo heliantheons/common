@@ -26,7 +26,8 @@ func TestSendBindsTLSHandshakeToSMTPHost(t *testing.T) {
 			certificateServer := httptest.NewTLSServer(nil)
 			certificate := certificateServer.TLS.Certificates[0]
 			certificateServer.Close()
-			listener, err := net.Listen("tcp", "127.0.0.1:0")
+			var listenConfig net.ListenConfig
+			listener, err := listenConfig.Listen(t.Context(), "tcp", "127.0.0.1:0")
 			if err != nil {
 				t.Fatalf("Listen() error = %v", err)
 			}
